@@ -25,4 +25,22 @@ const reverseString = (string) => {
   return string.slice(-1) + reverseString(string.slice(0, -1));
 };
 
-module.exports = { sheepCounter, powerCalculator, reverseString };
+const triangularNumber = (nth) => {
+  const nthInt = parseInt(nth, 10);
+  if (nthInt === 1) {
+    return 1;
+  }
+  return nthInt + (triangularNumber(nthInt - 1));
+};
+
+const splitString = (string, separator) => {
+  if (!string.includes(separator)) {
+    return [string];
+  }
+  const sepIndex = string.indexOf(separator);
+  return [string.slice(0, sepIndex), ...splitString(string.slice(sepIndex + 1), separator)];
+};
+
+module.exports = {
+  sheepCounter, powerCalculator, reverseString, triangularNumber, splitString,
+};

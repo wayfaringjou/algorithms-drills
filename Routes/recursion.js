@@ -1,5 +1,8 @@
 const express = require('express');
-const { sheepCounter, powerCalculator, reverseString } = require('../functions/recursiveFunctions');
+const {
+  sheepCounter, powerCalculator, reverseString, triangularNumber,
+  splitString,
+} = require('../functions/recursiveFunctions');
 
 const recursionRouter = express.Router();
 
@@ -31,4 +34,19 @@ recursionRouter
     res.send(`${reverseString(string)}\n`);
   });
 
+recursionRouter
+  .route('/triangularNumber/:nth')
+  .all((req, res) => {
+    const { nth } = req.params;
+    res.send(`${triangularNumber(nth)}\n`);
+  });
+
+recursionRouter
+  .route('/split')
+  .all((req, res) => {
+    const { string, separator } = req.query;
+    const splitedString = splitString(string, separator);
+    console.log(splitedString);
+    res.send(`${splitedString.join(' ')}\n`);
+  });
 module.exports = recursionRouter;
