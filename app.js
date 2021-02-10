@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const logger = require('morgan');
-const countSheepRouter = require('./Routes/recursion/countingSheep');
+const recursionRouter = require('./Routes/recursion');
 
 const app = express();
 
@@ -10,7 +10,7 @@ app.use(logger('combined'));
 app.use(express.json());
 app.use(express.text());
 
-app.use('/sheep', countSheepRouter);
+app.use('/recursion', recursionRouter);
 
 app.get((req, res, next) => {
   const dbInstance = req.app.get('db');
