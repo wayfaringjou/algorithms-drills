@@ -1,7 +1,11 @@
 const express = require('express');
 const {
-  sheepCounter, powerCalculator, reverseString, triangularNumber,
+  sheepCounter,
+  powerCalculator,
+  reverseString,
+  triangularNumber,
   splitString,
+  fibonacci,
 } = require('../functions/recursiveFunctions');
 
 const recursionRouter = express.Router();
@@ -48,5 +52,12 @@ recursionRouter
     const splitedString = splitString(string, separator);
     console.log(splitedString);
     res.send(`${splitedString.join(' ')}\n`);
+  });
+
+recursionRouter
+  .route('/fibonacci/:steps')
+  .all((req, res) => {
+    const { steps } = req.params;
+    res.send(`${fibonacci(steps)}\n`);
   });
 module.exports = recursionRouter;
